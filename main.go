@@ -5,6 +5,7 @@ import (
 	"os"
 
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/joho/godotenv"
 	"github.com/newtyf/go-api/routes"
 )
@@ -12,20 +13,19 @@ import (
 func main() {
 
 	// Cargar variables de entorno desde el archivo .env
-	if os.Getenv("ENVIRONMENT") == "development" {
-		err := godotenv.Load()
-		if err != nil {
-			log.Fatal("Error loading .env file")
-		}
+	err := godotenv.Load()
+	if err != nil {
+		log.Println("Warning: Error loading .env file")
 	}
 
-	// Obtener el puerto desde las variables de entorno
 	port := os.Getenv("PORT")
 	if port == "" {
-		port = "3000" // Valor por defecto si no se establece en .env
+		port = "3000"
 	}
 
 	app := fiber.New()
+	app.Use(cors.New())
+	app.Static("/", "./public")
 	routes.SetupRoutes(app)
 
 	log.Fatal(app.Listen(":" + port))
