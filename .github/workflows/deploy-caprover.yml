@@ -4,7 +4,7 @@ env:
     CONTEXT_DIR: './'
     IMAGE_NAME: ${{ github.repository }}/staging
     DOCKERFILE: Dockerfile
-    CAPROVER_APP: svg-repository-creator
+    CAPROVER_APP: go-api-zoluxions
     DOCKER_REGISTRY: ghcr.io
 
 on:
