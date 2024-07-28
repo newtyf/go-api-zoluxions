@@ -13,7 +13,7 @@ FROM node:20 AS build-client
 
 WORKDIR /app
 
-COPY ./client/ ./
+COPY ./client ./
 
 RUN npm install
 RUN npm run build
