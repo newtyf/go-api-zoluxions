@@ -13,17 +13,17 @@ FROM node:20 AS build-client
 
 WORKDIR /app
 
-COPY ./client /app
+COPY . .
 
-RUN npm install
-RUN npm run build
+RUN cd ./client; npm install
+RUN cd ./client ;npm run build
 
 FROM golang:1.20-alpine AS run-server
 
 WORKDIR /app
 
-COPY --from=build-client /app/dist /app/public
-COPY --from=build-server /app/api /app/api
+COPY --from=build-client /app/client/dist /app/public
+COPY --from=build-server /api /app/api
 
 EXPOSE 3000
 
