@@ -7,8 +7,6 @@ RUN go mod download
 
 COPY . .
 
-COPY .env .env
-
 RUN go build -o /api
 
 EXPOSE 3000
