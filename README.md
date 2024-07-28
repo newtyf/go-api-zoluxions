@@ -15,8 +15,8 @@ Este proyecto es una API desarrollada en Golang utilizando el framework Fiber. L
 Primero, clona el repositorio en tu máquina local:
 
 ```sh
-git clone https://github.com/tu-usuario/tu-repositorio.git
-cd tu-repositorio
+git clone https://github.com/newtyf/go-api-zoluxions.git
+cd go-api-zoluxions
 ```
 
 ### Instalación de Dependencias
