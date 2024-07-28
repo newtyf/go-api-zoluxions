@@ -15,7 +15,7 @@ WORKDIR /app
 
 COPY ./client /app
 
-RUN npm ci
+RUN npm install
 RUN npm run build
 
 FROM golang:1.20-alpine AS run-server
