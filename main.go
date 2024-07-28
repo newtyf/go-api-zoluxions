@@ -12,9 +12,11 @@ import (
 func main() {
 
 	// Cargar variables de entorno desde el archivo .env
-	err := godotenv.Load()
-	if err != nil {
-		log.Fatal("Error loading .env file")
+	if os.Getenv("ENVIRONMENT") == "development" {
+		err := godotenv.Load()
+		if err != nil {
+			log.Fatal("Error loading .env file")
+		}
 	}
 
 	// Obtener el puerto desde las variables de entorno
