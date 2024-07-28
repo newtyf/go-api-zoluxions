@@ -1,4 +1,4 @@
-FROM golang:1.20-alpine
+FROM golang:1.20-alpine AS build-server
 
 WORKDIR /app
 
@@ -9,6 +9,21 @@ COPY . .
 
 RUN go build -o /api
 
+FROM node:20 AS build-client
+
+WORKDIR /app
+
+COPY ./client/ ./
+
+RUN npm run build
+
+FROM golang:1.20-alpine AS run-server
+
+WORKDIR /app
+
+COPY --from=build-client /app/dist /public
+COPY --from=build-server /api /app/api
+
 EXPOSE 3000
 
-CMD ["/api"]
+CMD ["/app/api"]
